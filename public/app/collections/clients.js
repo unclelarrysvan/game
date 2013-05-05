@@ -11,6 +11,7 @@
     Clients.prototype.newClient = function(socket) {
       var client;
 
+      Logger.info("Client connected");
       client = new Client(socket);
       return this.list[socket.id] = client;
     };
@@ -24,6 +25,7 @@
     Clients.prototype.setNickname = function(socket, nickname) {
       var client;
 
+      Logger.info("Nickname set " + nickname);
       client = this.getClient(socket.id);
       return client.setNickname(nickname);
     };
@@ -31,6 +33,7 @@
     Clients.prototype.joinChannel = function(socket, channel) {
       var client;
 
+      Logger.info("Client joining channel " + channel);
       client = this.getClient(socket.id);
       return client.setChannel(channel);
     };
@@ -38,6 +41,7 @@
     Clients.prototype.disconnect = function(socket) {
       var client;
 
+      Logger.info("Client disconnected. " + socket.id);
       client = this.getClient(socket.id);
       client.disconnect();
       return delete this.list[socket.id];
@@ -46,6 +50,7 @@
     Clients.prototype.broadcast = function(socket, message) {
       var client;
 
+      Logger.info("Client Broadcasting " + socket.id);
       client = this.getClient(socket.id);
       return client.broadcast(message);
     };
