@@ -19,6 +19,18 @@
     return WelcomeController.index(req, res);
   });
 
+  app.get('/users', function(req, res) {
+    return UsersController.index(req, res);
+  });
+
+  app.get('/users/new', function(req, res) {
+    return UsersController["new"](req, res);
+  });
+
+  app.post('/users/create', function(req, res) {
+    return UsersController.create(req, res);
+  });
+
   io.sockets.on('connection', function(socket) {
     SessionsController["new"](socket);
     socket.on('login', function(data) {

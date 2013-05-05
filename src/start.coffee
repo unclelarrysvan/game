@@ -7,6 +7,10 @@ require("./config/routes")
 
 require("./app/controllers/welcome")
 
+require("./app/controllers/users_controller")
+require("./app/collections/users")
+require("./app/models/user")
+
 require("./app/models/client")
 require("./app/collections/clients")
 require("./app/controllers/clients_controller")
