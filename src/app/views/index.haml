@@ -1,12 +1,16 @@
-%h1 Connected to Socket Server
+%head
+  %link{:rel => "stylesheet", :href => "/client/stylesheets/application.css"}
+%h1#title Welcome to the Game
 
-%h2#channelName Channel 1
-#userName
-  Please enter your name:
-  %input{:id => "name"}
-  %button#startChat Enter Chat
+#loginForm
+  %input#userName{:placeholder => "User Name"}
+  %button#login Login
 
-#chat{:style => "display:none;"}
+#game{:style => "display:none"}
+  #worldMessages
+    %h3 World Messages
+
+-#chat{:style => "display:none;"}
   #channels{:style => "float:right; width:10%; border:1px solid black; cursor:pointer;"}
     #channel1 Channel 1
     #channel2 Channel 2
@@ -14,7 +18,7 @@
   %input#message
   %button#sendMessage Send
 
-%script{:src => "http://code.jquery.com/jquery-1.7.2.min.js"}
+%script{:src => "http://code.jquery.com/jquery-1.9.1.min.js"}
 %script{:src => "/socket.io/socket.io.js"}
 %script{:src => "/client/socket_junk.js"}
 %script{:src => "/client/ui.js"}

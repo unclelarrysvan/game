@@ -1,5 +1,5 @@
 (function() {
-  var Clients, Logger;
+  var Logger;
 
   global.port = process.env.PORT || 3001;
 
@@ -13,9 +13,13 @@
 
   require("./app/controllers/welcome");
 
-  Clients = require("./app/collections/clients").Clients;
+  require("./app/models/client");
 
-  global.Clients = new Clients;
+  require("./app/collections/clients");
+
+  require("./app/controllers/clients_controller");
+
+  require("./app/controllers/sessions_controller");
 
   Logger = require("./lib/logger").Logger;
 

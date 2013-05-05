@@ -7,8 +7,10 @@ require("./config/routes")
 
 require("./app/controllers/welcome")
 
-Clients = require("./app/collections/clients").Clients
-global.Clients = new Clients
+require("./app/models/client")
+require("./app/collections/clients")
+require("./app/controllers/clients_controller")
+require("./app/controllers/sessions_controller")
 
 Logger = require("./lib/logger").Logger
 global.Logger = new Logger

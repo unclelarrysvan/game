@@ -3,16 +3,27 @@ class @Ui
     @setObservers()
 
   setObservers: ->
-    $("#startChat").click =>    @startChat()
-    $("#sendMessage").click => @sendMessage()
-    $("#channel1").click =>     ClientSocket.setChannel(1)
-    $("#channel2").click =>     ClientSocket.setChannel(2)
-    $("#message").keyup (event) => ClientSocket.sendSock() if event.keyCode == 13
+    $("#login").click =>         @login()
+    #$("#sendMessage").click =>  @sendMessage()
+    #$("#channel1").click =>     ClientSocket.setChannel(1)
+    #$("#channel2").click =>     ClientSocket.setChannel(2)
+    #$("#message").keyup (event) => ClientSocket.sendSock() if event.keyCode == 13
 
-  startChat: ->
-    @setNickname()
-    $("#userName").hide()
-    $("#chat").show()
+  login: ->
+    userName = $("#userName").val()
+    ClientSocket = new ClientSockets
+    ClientSocket.login(userName)
+
+  loginSuccess: ->
+    $("#loginForm").hide()
+    $("#game").show()
+    $("#title").html "Logged in successfully."
+
+  displayWorldMessage: (message) ->
+    $("#worldMessages")
+      .append(message)
+      .append("<br>")
+      .scrollTop($("#worldMessages").outerHeight())
 
   setNickname: ->
     nickname = $("#name").val()

@@ -1,7 +1,6 @@
 (function() {
   $(function() {
-    window.Ui = new Ui;
-    return window.ClientSocket = new ClientSockets(1);
+    return window.Ui = new Ui;
   });
 
 }).call(this);

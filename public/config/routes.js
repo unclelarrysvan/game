@@ -11,23 +11,24 @@
     return res.sendfile("client/init.js");
   });
 
+  app.get('/client/stylesheets/application.css', function(req, res) {
+    return res.sendfile("client/stylesheets/application.css");
+  });
+
   app.get('/', function(req, res) {
     return WelcomeController.index(req, res);
   });
 
   io.sockets.on('connection', function(socket) {
-    Clients.newClient(socket);
-    socket.on('set nickname', function(data) {
-      return Clients.setNickname(socket, data.nickname);
+    SessionsController["new"](socket);
+    socket.on('login', function(data) {
+      return SessionsController.create(socket, data);
     });
-    socket.on("change channel", function(data) {
-      return Clients.joinChannel(socket, data.channel);
+    socket.on('broadcast', function(data) {
+      return ClientsController.broadcast(socket, data.message);
     });
-    socket.on('disconnect', function() {
-      return Clients.disconnect(socket);
-    });
-    return socket.on('broadcast', function(data) {
-      return Clients.broadcast(socket, data.message);
+    return socket.on('disconnect', function() {
+      return ClientsController.disconnect(socket);
     });
   });
 

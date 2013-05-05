@@ -7,29 +7,27 @@
     Ui.prototype.setObservers = function() {
       var _this = this;
 
-      $("#startChat").click(function() {
-        return _this.startChat();
-      });
-      $("#sendMessage").click(function() {
-        return _this.sendMessage();
-      });
-      $("#channel1").click(function() {
-        return ClientSocket.setChannel(1);
-      });
-      $("#channel2").click(function() {
-        return ClientSocket.setChannel(2);
-      });
-      return $("#message").keyup(function(event) {
-        if (event.keyCode === 13) {
-          return ClientSocket.sendSock();
-        }
+      return $("#login").click(function() {
+        return _this.login();
       });
     };
 
-    Ui.prototype.startChat = function() {
-      this.setNickname();
-      $("#userName").hide();
-      return $("#chat").show();
+    Ui.prototype.login = function() {
+      var ClientSocket, userName;
+
+      userName = $("#userName").val();
+      ClientSocket = new ClientSockets;
+      return ClientSocket.login(userName);
+    };
+
+    Ui.prototype.loginSuccess = function() {
+      $("#loginForm").hide();
+      $("#game").show();
+      return $("#title").html("Logged in successfully.");
+    };
+
+    Ui.prototype.displayWorldMessage = function(message) {
+      return $("#worldMessages").append(message).append("<br>").scrollTop($("#worldMessages").outerHeight());
     };
 
     Ui.prototype.setNickname = function() {
