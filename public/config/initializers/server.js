@@ -36,6 +36,6 @@
 
   })();
 
-  exports.ServerInitializer = ServerInitializer;
+  new ServerInitializer(port);
 
 }).call(this);

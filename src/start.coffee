@@ -1,15 +1,14 @@
 global.port = process.env.PORT || 3001
 
-ServerInitializer = require("./config/initializers/server").ServerInitializer
-new ServerInitializer(port)
+require("./config/initializers/server")
+require("./config/database_connection_info")
+require("./config/initializers/database")
+require("./config/routes")
 
-require("./config/routes").Routes
+require("./app/controllers/welcome")
 
 Clients = require("./app/collections/clients").Clients
 global.Clients = new Clients
-
-Security = require("./lib/security").Security
-global.Security = new Security
 
 Logger = require("./lib/logger").Logger
 global.Logger = new Logger

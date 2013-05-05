@@ -25,4 +25,4 @@ class ServerInitializer
     app.use @express.static(__dirname + '/static')
     console.log "..done."
 
-exports.ServerInitializer = ServerInitializer
+new ServerInitializer(port)
