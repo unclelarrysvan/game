@@ -1,3 +1,11 @@
+body {
+  background: #eeeeee; }
+
+table {
+  border: 1px solid black; }
+  table td, table th {
+    border: 1px solid black; }
+
 #worldMessages {
   border: 1px solid black;
   max-height: 200px;

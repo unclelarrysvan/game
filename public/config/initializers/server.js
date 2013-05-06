@@ -27,8 +27,8 @@
 
     ServerInitializer.prototype.startStaticService = function() {
       console.log(" ...preparing to serve static assets");
+      app.set('view engine', 'jade');
       app.use(this.express.bodyParser());
-      app.use(this.express["static"](__dirname + '/static'));
       return console.log("..done.");
     };
 

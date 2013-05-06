@@ -1,0 +1,16 @@
+extend layout
+block content
+  a(href="/users/new")
+    | New User
+
+
+  table
+    tr
+      th userName
+      th _id
+    - each record, i in records
+      tr
+        td= record.userName
+        td= record._id
+
+

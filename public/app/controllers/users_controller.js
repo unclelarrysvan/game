@@ -13,7 +13,9 @@
     };
 
     UsersController.prototype.showIndex = function(response, records) {
-      return response.send(records);
+      return response.render("index", {
+        records: records
+      });
     };
 
     UsersController.prototype["new"] = function(req, res) {
@@ -26,7 +28,7 @@
       params = req.body;
       user = new User(params);
       user.save();
-      return res.send("done");
+      return res.redirect("/users");
     };
 
     return UsersController;

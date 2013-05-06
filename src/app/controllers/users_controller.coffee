@@ -3,7 +3,7 @@ class UsersController
     Users.all(response, ((response, records) => @showIndex(response, records)))
 
   showIndex: (response, records) ->
-    response.send(records)
+    response.render("index", {records: records})
 
   new: (req, res) ->
     res.sendfile("app/views/users/new.html")
@@ -12,6 +12,6 @@ class UsersController
     params = req.body
     user = new User(params)
     user.save()
-    res.send("done")
+    res.redirect "/users"
 
 global.UsersController = new UsersController

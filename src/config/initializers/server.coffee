@@ -21,8 +21,9 @@ class ServerInitializer
 
   startStaticService: ->
     console.log " ...preparing to serve static assets"
+    app.set('view engine', 'jade')
     app.use @express.bodyParser()
-    app.use @express.static(__dirname + '/static')
+    #app.use @express.staticProvider(__dirname + '/public')
     console.log "..done."
 
 new ServerInitializer(port)
