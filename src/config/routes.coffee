@@ -7,11 +7,13 @@ app.get '/client/stylesheets/application.css', (req, res) -> res.sendfile("clien
 #web routes
 app.get   '/',             (req, res) -> WelcomeController.index(req, res)
 
-app.get   '/users',        (req, res) -> UsersController.index(req, res)
-app.get   '/users/show',   (req, res) -> UsersController.show(req, res)
-app.get   '/users/new',    (req, res) -> UsersController.new(req, res)
-app.post  '/users/create', (req, res) -> UsersController.create(req, res)
-app.post  '/users/edit',   (req, res) -> UsersController.edit(req, res)
+app.get   '/users',         (req, res) -> UsersController.index(req, res)
+app.get   '/users/show',    (req, res) -> UsersController.show(req, res)
+app.get   '/users/new',     (req, res) -> UsersController.new(req, res)
+app.post  '/users/create',  (req, res) -> UsersController.create(req, res)
+app.get   '/users/edit',    (req, res) -> UsersController.edit(req, res)
+app.post  '/users/update',  (req, res) -> UsersController.update(req, res)
+app.get   '/users/delete', (req, res) -> UsersController.delete(req, res)
 
 #socket routes
 io.sockets.on 'connection', (socket) ->

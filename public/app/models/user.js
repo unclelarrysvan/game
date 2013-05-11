@@ -3,6 +3,7 @@
 
   User = (function() {
     function User(data) {
+      data = data || {};
       this.collection = "users";
       this.userName = data.userName;
     }

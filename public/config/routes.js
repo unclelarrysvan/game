@@ -35,8 +35,16 @@
     return UsersController.create(req, res);
   });
 
-  app.post('/users/edit', function(req, res) {
+  app.get('/users/edit', function(req, res) {
     return UsersController.edit(req, res);
+  });
+
+  app.post('/users/update', function(req, res) {
+    return UsersController.update(req, res);
+  });
+
+  app.get('/users/delete', function(req, res) {
+    return UsersController["delete"](req, res);
   });
 
   io.sockets.on('connection', function(socket) {

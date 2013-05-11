@@ -28,7 +28,12 @@
     };
 
     UsersController.prototype["new"] = function(req, res) {
-      return res.sendfile("app/views/users/new.html");
+      var user;
+
+      user = new User;
+      return res.render("users/new", {
+        user: user
+      });
     };
 
     UsersController.prototype.create = function(req, res) {
@@ -40,13 +45,37 @@
       return res.redirect("/users");
     };
 
-    UsersController.prototype.edit = function(req, res) {
-      var _this = this;
+    UsersController.prototype.edit = function(req, response) {
+      var query, url, url_parts,
+        _this = this;
 
-      return User.find(req.body.id, response, function(response, user) {
-        return response.render("users/form", {
+      url = require('url');
+      url_parts = url.parse(req.url, true);
+      query = url_parts.query;
+      return Users.find(query.id, response, function(response, user) {
+        return response.render("users/edit", {
           user: user
         });
+      });
+    };
+
+    UsersController.prototype.update = function(req, response) {
+      var _this = this;
+
+      return Users.update(req.body, response, function(response) {
+        return response.redirect("/users");
+      });
+    };
+
+    UsersController.prototype["delete"] = function(req, response) {
+      var query, url, url_parts,
+        _this = this;
+
+      url = require('url');
+      url_parts = url.parse(req.url, true);
+      query = url_parts.query;
+      return Users["delete"](query.id, response, function(response) {
+        return response.redirect("/users");
       });
     };
 

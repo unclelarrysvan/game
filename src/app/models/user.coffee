@@ -1,5 +1,6 @@
 class User
   constructor: (data) ->
+    data = data || {}
     @collection = "users"
     @userName = data.userName
 
