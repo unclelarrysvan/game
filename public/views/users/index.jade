@@ -1,4 +1,4 @@
-extend layout
+extend ../layout
 block content
   a(href="/users/new")
     | New User
@@ -10,7 +10,6 @@ block content
       th _id
     - each record, i in records
       tr
-        td= record.userName
+        td
+          a(href="users/show?id="+record._id)= record.userName
         td= record._id
-
-

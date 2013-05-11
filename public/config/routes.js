@@ -23,12 +23,20 @@
     return UsersController.index(req, res);
   });
 
+  app.get('/users/show', function(req, res) {
+    return UsersController.show(req, res);
+  });
+
   app.get('/users/new', function(req, res) {
     return UsersController["new"](req, res);
   });
 
   app.post('/users/create', function(req, res) {
     return UsersController.create(req, res);
+  });
+
+  app.post('/users/edit', function(req, res) {
+    return UsersController.edit(req, res);
   });
 
   io.sockets.on('connection', function(socket) {
