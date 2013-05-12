@@ -23,6 +23,12 @@
 
   require("./app/models/user");
 
+  require("./app/controllers/areas_controller");
+
+  require("./app/collections/areas_collection");
+
+  require("./app/models/area");
+
   require("./app/models/client");
 
   require("./app/collections/clients");

@@ -13,6 +13,10 @@ require("./app/controllers/users_controller")
 require("./app/collections/users")
 require("./app/models/user")
 
+require("./app/controllers/areas_controller")
+require("./app/collections/areas_collection")
+require("./app/models/area")
+
 require("./app/models/client")
 require("./app/collections/clients")
 require("./app/controllers/clients_controller")
