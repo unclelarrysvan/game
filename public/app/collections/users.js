@@ -1,89 +1,18 @@
 (function() {
-  var Users;
+  var Users,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  Users = (function() {
+  Users = (function(_super) {
+    __extends(Users, _super);
+
     function Users() {
       this.collection = "users";
-      this.ObjectID = require('mongodb').ObjectID;
     }
-
-    Users.prototype.getCollection = function(callback) {
-      var _this = this;
-
-      return Db.createCollection(this.collection, function(err, collection) {
-        if (err) {
-          throw err;
-        }
-        return callback(collection);
-      });
-    };
-
-    Users.prototype.all = function(res, callback) {
-      var _this = this;
-
-      return this.getCollection(function(collection) {
-        return collection.find().toArray(function(err, records) {
-          if (err) {
-            throw err;
-          }
-          return callback(res, records);
-        });
-      });
-    };
-
-    Users.prototype.find = function(id, response, callback) {
-      var _this = this;
-
-      return this.getCollection(function(collection) {
-        return collection.find({
-          _id: new _this.ObjectID(id)
-        }).nextObject(function(err, record) {
-          if (err) {
-            throw err;
-          }
-          return callback(response, record);
-        });
-      });
-    };
-
-    Users.prototype.update = function(params, response, callback) {
-      var _id,
-        _this = this;
-
-      _id = params._id;
-      delete params._id;
-      return this.getCollection(function(collection) {
-        return collection.update({
-          _id: new _this.ObjectID(_id)
-        }, {
-          $set: params
-        }, function(err, record) {
-          if (err) {
-            throw err;
-          }
-          return callback(response, record);
-        });
-      });
-    };
-
-    Users.prototype["delete"] = function(id, response, callback) {
-      var _this = this;
-
-      return this.getCollection(function(collection) {
-        return collection.remove({
-          _id: new _this.ObjectID(id)
-        }, function(err) {
-          if (err) {
-            throw err;
-          }
-          return callback(response);
-        });
-      });
-    };
 
     return Users;
 
-  })();
+  })(LFCollection);
 
   global.Users = new Users;
 

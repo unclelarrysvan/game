@@ -13,6 +13,8 @@
 
   require("./app/controllers/application_controller");
 
+  require("./lib/lf_collection");
+
   require("./app/controllers/welcome");
 
   require("./app/controllers/users_controller");

@@ -5,6 +5,7 @@ require("./config/database_connection_info")
 require("./config/initializers/database")
 require("./config/routes")
 require("./app/controllers/application_controller")
+require("./lib/lf_collection")
 
 require("./app/controllers/welcome")
 
