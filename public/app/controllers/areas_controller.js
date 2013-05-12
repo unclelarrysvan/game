@@ -44,10 +44,13 @@
       });
     };
 
-    AreasController.prototype.create = function(req, response) {
+    AreasController.prototype.save = function(req, response) {
       var area;
 
       area = new Area(req.body);
+      if (req.body.adjacentArea_direction) {
+        area.addAdjacentAreas(req.body.adjacentArea_direction, req.body.adjacentArea_id);
+      }
       return Areas.save(area, response, function(respose) {
         return response.redirect("/areas");
       });
@@ -68,14 +71,6 @@
       });
     };
 
-    AreasController.prototype.update = function(req, response) {
-      var _this = this;
-
-      return Areas.update(req.body, response, function(response) {
-        return response.redirect("/areas");
-      });
-    };
-
     AreasController.prototype["delete"] = function(req, response) {
       var query,
         _this = this;
@@ -83,6 +78,17 @@
       query = this.getParams(req);
       return Areas["delete"](query.id, response, function(response) {
         return response.redirect("/areas");
+      });
+    };
+
+    AreasController.prototype.adjacentForm = function(req, response) {
+      var _this = this;
+
+      return Areas.all(response, function(response, areas) {
+        return response.render("areas/_adjacent_area_form", {
+          adjacentArea: {},
+          areas: areas
+        });
       });
     };
 

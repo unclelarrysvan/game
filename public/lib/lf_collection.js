@@ -48,14 +48,20 @@
     LFCollection.prototype.save = function(obj, response, callback) {
       var _this = this;
 
-      return this.getCollection(function(collection) {
-        return collection.insert(obj, function(err, records) {
-          if (err) {
-            throw err;
-          }
-          return callback(response);
+      if (obj.isReadyToSave()) {
+        return this.getCollection(function(collection) {
+          return collection.save(obj, function(err, records) {
+            if (err) {
+              throw err;
+            }
+            return callback(response);
+          });
         });
-      });
+      } else {
+        return setTimeout((function() {
+          return _this.save(obj, response, callback);
+        }), 10);
+      }
     };
 
     LFCollection.prototype.update = function(params, response, callback) {

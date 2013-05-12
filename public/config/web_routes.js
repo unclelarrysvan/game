@@ -63,16 +63,24 @@
     return AreasController.create(req, res);
   });
 
+  app.post('/areas/save', function(req, res) {
+    return AreasController.save(req, res);
+  });
+
   app.get('/areas/edit', function(req, res) {
     return AreasController.edit(req, res);
   });
 
   app.post('/areas/update', function(req, res) {
-    return AreasController.update(req, res);
+    return AreasController.create(req, res);
   });
 
   app.get('/areas/delete', function(req, res) {
     return AreasController["delete"](req, res);
+  });
+
+  app.get('/areas/adjacentForm', function(req, res) {
+    return AreasController.adjacentForm(req, res);
   });
 
 }).call(this);

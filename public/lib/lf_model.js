@@ -6,6 +6,10 @@
 
     LFModel.prototype.ObjectID = require('mongodb').ObjectID;
 
+    LFModel.prototype.isReadyToSave = function() {
+      return true;
+    };
+
     return LFModel;
 
   })();

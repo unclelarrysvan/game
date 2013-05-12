@@ -19,10 +19,13 @@ class LFCollection
         callback(response, record)
 
   save: (obj, response, callback) ->
-    @getCollection (collection) =>
-      collection.insert obj, (err, records) ->
-        throw err if err
-        callback(response)
+    if obj.isReadyToSave()
+      @getCollection (collection) =>
+        collection.save obj, (err, records) ->
+          throw err if err
+          callback(response)
+    else
+      setTimeout (=> @save(obj, response, callback)), 10
 
   update: (params, response, callback) ->
     _id = params._id

@@ -1,18 +1,25 @@
-input(type="hidden", value=area._id, name="_id")
-.field
-  label Name:
-  input(value=area.name, name="name")
+form(action="/areas/save", method="post")
+  input(type="hidden", value=area._id, name="_id")
+  .field
+    label Name:
+    input(value=area.name, name="name")
 
-.field
-  label Description:
-  textarea(name="description")=area.description
+  .field
+    label Description:
+    textarea(name="description")=area.description
 
+  .adjacentAreas
+    label Adjacent Areas:
+    - each adjacentArea, id in area.adjacentAreas
+      include _adjacent_area_form
 
-.field
-  label Adjacent Areas:
-  select(name="adjacentArea")
-    - each area, id in areas
-      option(value=area._id)= area.name
+  a.addAdjacent(href="#", onclick="addAdj()") Add Adjacent Area
 
-.actions
-  button Submit
+  .actions
+    button Submit
+
+:coffeescript
+  window.addAdj = ->
+    $.ajax "/areas/adjacentForm",
+      success: (transport) ->
+        $(".adjacentAreas").append(transport)
