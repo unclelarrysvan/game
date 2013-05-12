@@ -4,6 +4,7 @@ require("./config/initializers/server")
 require("./config/database_connection_info")
 require("./config/initializers/database")
 require("./config/routes")
+require("./app/controllers/application_controller")
 
 require("./app/controllers/welcome")
 

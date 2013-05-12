@@ -11,6 +11,8 @@
 
   require("./config/routes");
 
+  require("./app/controllers/application_controller");
+
   require("./app/controllers/welcome");
 
   require("./app/controllers/users_controller");
