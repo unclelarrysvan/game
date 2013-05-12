@@ -1,11 +1,11 @@
 input(type="hidden", value=area._id, name="_id")
 .field
   label Name:
-  input(value=area.Name, name="name")
+  input(value=area.name, name="name")
 
 .field
   label Description:
-  textarea(value=area.description, name="description")
+  textarea(name="description")=area.description
 
 .actions
   button Submit
