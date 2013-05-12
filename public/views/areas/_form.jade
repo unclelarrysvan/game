@@ -7,5 +7,12 @@ input(type="hidden", value=area._id, name="_id")
   label Description:
   textarea(name="description")=area.description
 
+
+.field
+  label Adjacent Areas:
+  select(name="adjacentArea")
+    - each area, id in areas
+      option(value=area._id)= area.name
+
 .actions
   button Submit

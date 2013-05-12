@@ -32,12 +32,15 @@
       });
     };
 
-    AreasController.prototype["new"] = function(req, res) {
+    AreasController.prototype["new"] = function(req, response) {
       var area;
 
       area = new Area;
-      return res.render("areas/new", {
-        area: area
+      return Areas.all(response, function(response, areas) {
+        return response.render("areas/new", {
+          area: area,
+          areas: areas
+        });
       });
     };
 
@@ -56,8 +59,11 @@
 
       query = this.getParams(req);
       return Areas.find(query.id, response, function(response, area) {
-        return response.render("areas/edit", {
-          area: area
+        return Areas.all(response, function(response, areas) {
+          return response.render("areas/edit", {
+            area: area,
+            areas: areas
+          });
         });
       });
     };

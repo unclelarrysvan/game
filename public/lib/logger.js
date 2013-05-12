@@ -12,6 +12,6 @@
 
   })();
 
-  exports.Logger = Logger;
+  global.Logger = Logger;
 
 }).call(this);

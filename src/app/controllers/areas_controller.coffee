@@ -8,9 +8,10 @@ class AreasController extends ApplicationController
     Areas.find(query.id, res,
       (response, area) -> response.render("areas/show", {area: area}))
 
-  new: (req, res) ->
+  new: (req, response) ->
     area = new Area
-    res.render("areas/new", {area: area})
+    Areas.all(response,
+      (response, areas) -> response.render("areas/new", {area: area, areas: areas}))
 
   create: (req, response) ->
     area = new Area(req.body)
@@ -20,7 +21,10 @@ class AreasController extends ApplicationController
   edit: (req, response) ->
     query = @getParams(req)
     Areas.find(query.id, response,
-      (response, area) => response.render("areas/edit", {area: area}))
+      (response, area) =>
+         Areas.all(response,
+            (response, areas) =>
+              response.render("areas/edit", {area: area, areas: areas})))
 
   update: (req, response) ->
     Areas.update(req.body, response,

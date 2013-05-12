@@ -1,6 +1,4 @@
 (function() {
-  var Logger;
-
   global.port = process.env.PORT || 3001;
 
   require("./config/initializers/server");
@@ -11,34 +9,20 @@
 
   require("./config/routes");
 
-  require("./app/controllers/application_controller");
+  require("fs").readdirSync("./lib").forEach(function(file) {
+    return require("./lib/" + file);
+  });
 
-  require("./lib/lf_collection");
+  require("fs").readdirSync("./app/models").forEach(function(file) {
+    return require("./app/models/" + file);
+  });
 
-  require("./app/controllers/welcome");
+  require("fs").readdirSync("./app/collections").forEach(function(file) {
+    return require("./app/collections/" + file);
+  });
 
-  require("./app/controllers/users_controller");
-
-  require("./app/collections/users");
-
-  require("./app/models/user");
-
-  require("./app/controllers/areas_controller");
-
-  require("./app/collections/areas_collection");
-
-  require("./app/models/area");
-
-  require("./app/models/client");
-
-  require("./app/collections/clients");
-
-  require("./app/controllers/clients_controller");
-
-  require("./app/controllers/sessions_controller");
-
-  Logger = require("./lib/logger").Logger;
-
-  global.Logger = new Logger;
+  require("fs").readdirSync("./app/controllers").forEach(function(file) {
+    return require("./app/controllers/" + file);
+  });
 
 }).call(this);
