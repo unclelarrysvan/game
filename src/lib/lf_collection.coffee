@@ -1,5 +1,4 @@
 class LFCollection
-
   ObjectID: require('mongodb').ObjectID
 
   getCollection: (callback) ->

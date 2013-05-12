@@ -4,23 +4,13 @@ require("./config/initializers/server")
 require("./config/database_connection_info")
 require("./config/initializers/database")
 require("./config/routes")
-require("./app/controllers/application_controller")
-require("./lib/lf_collection")
 
-require("./app/controllers/welcome")
+require("fs").readdirSync("./lib").forEach (file) ->
+ require("./lib/" + file)
 
-require("./app/controllers/users_controller")
-require("./app/collections/users")
-require("./app/models/user")
-
-require("./app/controllers/areas_controller")
-require("./app/collections/areas_collection")
-require("./app/models/area")
-
-require("./app/models/client")
-require("./app/collections/clients")
-require("./app/controllers/clients_controller")
-require("./app/controllers/sessions_controller")
-
-Logger = require("./lib/logger").Logger
-global.Logger = new Logger
+require("fs").readdirSync("./app/models").forEach (file) ->
+ require("./app/models/" + file)
+require("fs").readdirSync("./app/collections").forEach (file) ->
+ require("./app/collections/" + file)
+require("fs").readdirSync("./app/controllers").forEach (file) ->
+ require("./app/controllers/" + file)

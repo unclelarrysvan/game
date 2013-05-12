@@ -3,4 +3,4 @@ class Logger
   info: (message) ->
     console.log ">>>>>>>>> " + message + " <<<<<<<<<"
 
-exports.Logger = Logger
+global.Logger = Logger
