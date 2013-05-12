@@ -41,13 +41,13 @@
       });
     };
 
-    UsersController.prototype.create = function(req, res) {
-      var params, user;
+    UsersController.prototype.create = function(req, response) {
+      var user;
 
-      params = req.body;
-      user = new User(params);
-      user.save();
-      return res.redirect("/users");
+      user = new User(req.body);
+      return Users.save(user, response, function(respose) {
+        return response.redirect("/users");
+      });
     };
 
     UsersController.prototype.edit = function(req, response) {

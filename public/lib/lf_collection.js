@@ -45,6 +45,19 @@
       });
     };
 
+    LFCollection.prototype.save = function(obj, response, callback) {
+      var _this = this;
+
+      return this.getCollection(function(collection) {
+        return collection.insert(obj, function(err, records) {
+          if (err) {
+            throw err;
+          }
+          return callback(response);
+        });
+      });
+    };
+
     LFCollection.prototype.update = function(params, response, callback) {
       var _id,
         _this = this;

@@ -12,11 +12,10 @@ class UsersController extends ApplicationController
     user = new User
     res.render("users/new", {user: user})
 
-  create: (req, res) ->
-    params = req.body
-    user = new User(params)
-    user.save()
-    res.redirect "/users"
+  create: (req, response) ->
+    user = new User(req.body)
+    Users.save(user, response,
+      (respose) -> response.redirect "/users")
 
   edit: (req, response) ->
     query = @getParams(req)

@@ -19,6 +19,12 @@ class LFCollection
         throw err if err
         callback(response, record)
 
+  save: (obj, response, callback) ->
+    @getCollection (collection) =>
+      collection.insert obj, (err, records) ->
+        throw err if err
+        callback(response)
+
   update: (params, response, callback) ->
     _id = params._id
     delete params._id
