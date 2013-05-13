@@ -1,6 +1,8 @@
 (function() {
   $(function() {
-    return window.Ui = new Ui;
+    window.Ui = new Ui;
+    window.ClientSocket = new ClientSockets;
+    return window.PlayerCharacters = new PlayerCharacters;
   });
 
 }).call(this);

@@ -11,6 +11,18 @@
     return res.sendfile("client/init.js");
   });
 
+  app.get('/client/loading_image.js', function(req, res) {
+    return res.sendfile("client/loading_image.js");
+  });
+
+  app.get('/client/lib/spin.min.js', function(req, res) {
+    return res.sendfile("client/lib/spin.min.js");
+  });
+
+  app.get('/client/player_characters.js', function(req, res) {
+    return res.sendfile("client/player_characters.js");
+  });
+
   app.get('/client/stylesheets/application.css', function(req, res) {
     return res.sendfile("client/stylesheets/application.css");
   });

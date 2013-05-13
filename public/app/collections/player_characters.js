@@ -10,6 +10,21 @@
       this.collection = "playerCharacters";
     }
 
+    PlayerCharacters.prototype.findForUser = function(user, response, callback) {
+      var _this = this;
+
+      return this.getCollection(function(collection) {
+        return collection.find({
+          user_id: _this.ObjectID(user._id.toString())
+        }).toArray(function(err, records) {
+          if (err) {
+            throw err;
+          }
+          return callback(response, records);
+        });
+      });
+    };
+
     return PlayerCharacters;
 
   })(LFCollection);

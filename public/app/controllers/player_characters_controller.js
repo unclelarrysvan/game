@@ -35,7 +35,7 @@
     PlayerCharactersController.prototype["new"] = function(req, res) {
       var playerCharacter;
 
-      playerCharacter = new playerCharacter;
+      playerCharacter = new PlayerCharacter;
       return res.render("playerCharacters/new", {
         playerCharacter: playerCharacter
       });
@@ -44,7 +44,7 @@
     PlayerCharactersController.prototype.save = function(req, response) {
       var playerCharacter;
 
-      playerCharacter = new playerCharacter(req.body);
+      playerCharacter = new PlayerCharacter(req.body);
       return PlayerCharacters.save(playerCharacter, response, function(respose) {
         return response.redirect("/playerCharacters");
       });

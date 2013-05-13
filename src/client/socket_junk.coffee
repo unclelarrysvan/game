@@ -3,22 +3,27 @@ class @ClientSockets
     @socket = io.connect()
     @setSocketListeners()
 
-  login: (userName) ->
-    @socket.emit("login", {userName: userName})
-
   setSocketListeners: ->
     @socket.on 'loginResponse', (data) => @loginResponse(data)
     @socket.on 'world',         (data) => @worldMessage(data)
 
+  login: (userName) ->
+    @socket.emit("login", {userName: userName})
+
   loginResponse: (data) ->
     if data.login == "success"
-      Ui.loginSuccess()
+      @loginSuccess()
     else
       Ui.loginFailed()
+
+  loginSuccess: () ->
+    Ui.loginSuccess()
+    PlayerCharacters.getCharacters()
 
   worldMessage: (data) ->
     Ui.displayWorldMessage(data.message)
 
+#######
   setChannel: (channel) ->
     @socket.emit("change channel", {channel: channel})
     @channel = channel

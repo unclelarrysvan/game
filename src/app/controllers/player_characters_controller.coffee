@@ -9,11 +9,11 @@ class PlayerCharactersController extends ApplicationController
       (response, playerCharacter) -> response.render("playerCharacters/show", {playerCharacter: playerCharacter}))
 
   new: (req, res) ->
-    playerCharacter = new playerCharacter
+    playerCharacter = new PlayerCharacter
     res.render("playerCharacters/new", {playerCharacter: playerCharacter})
 
   save: (req, response) ->
-    playerCharacter = new playerCharacter(req.body)
+    playerCharacter = new PlayerCharacter(req.body)
     PlayerCharacters.save(playerCharacter, response,
       (respose) -> response.redirect "/playerCharacters")
 

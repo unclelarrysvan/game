@@ -13,10 +13,9 @@
     };
 
     Ui.prototype.login = function() {
-      var ClientSocket, userName;
+      var userName;
 
       userName = $("#userName").val();
-      ClientSocket = new ClientSockets;
       return ClientSocket.login(userName);
     };
 
@@ -32,6 +31,17 @@
 
     Ui.prototype.displayWorldMessage = function(message) {
       return $("#worldMessages").append(message).append("<br>").scrollTop($("#worldMessages").outerHeight());
+    };
+
+    Ui.prototype.mainWindowRender = function(html) {
+      return $("#main").html(html);
+    };
+
+    Ui.prototype.gettingCharacters = function() {
+      return new LoadingImage({
+        target: "main",
+        message: "Getting character list..."
+      });
     };
 
     Ui.prototype.setNickname = function() {

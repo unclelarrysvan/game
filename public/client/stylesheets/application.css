@@ -16,3 +16,13 @@ table {
   #worldMessages h3 {
     margin-top: 0;
     padding-top: 0; }
+
+.spinner {
+  margin: 0 auto;
+  width: 20%; }
+  .spinner .spinning {
+    height: 10px;
+    margin: 25px auto;
+    width: 10%; }
+  .spinner .spinner_message {
+    text-align: center; }

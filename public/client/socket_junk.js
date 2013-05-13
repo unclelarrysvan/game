@@ -5,12 +5,6 @@
       this.setSocketListeners();
     }
 
-    ClientSockets.prototype.login = function(userName) {
-      return this.socket.emit("login", {
-        userName: userName
-      });
-    };
-
     ClientSockets.prototype.setSocketListeners = function() {
       var _this = this;
 
@@ -22,12 +16,23 @@
       });
     };
 
+    ClientSockets.prototype.login = function(userName) {
+      return this.socket.emit("login", {
+        userName: userName
+      });
+    };
+
     ClientSockets.prototype.loginResponse = function(data) {
       if (data.login === "success") {
-        return Ui.loginSuccess();
+        return this.loginSuccess();
       } else {
         return Ui.loginFailed();
       }
+    };
+
+    ClientSockets.prototype.loginSuccess = function() {
+      Ui.loginSuccess();
+      return PlayerCharacters.getCharacters();
     };
 
     ClientSockets.prototype.worldMessage = function(data) {

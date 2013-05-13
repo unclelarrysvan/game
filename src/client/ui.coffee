@@ -11,7 +11,6 @@ class @Ui
 
   login: ->
     userName = $("#userName").val()
-    ClientSocket = new ClientSockets
     ClientSocket.login(userName)
 
   loginSuccess: ->
@@ -28,6 +27,13 @@ class @Ui
       .append("<br>")
       .scrollTop($("#worldMessages").outerHeight())
 
+  mainWindowRender: (html) ->
+    $("#main").html html
+
+  gettingCharacters: ->
+    new LoadingImage(target: "main", message: "Getting character list...")
+
+#######
   setNickname: ->
     nickname = $("#name").val()
     ClientSocket.setNickname(nickname)
@@ -46,3 +52,4 @@ class @Ui
 
   displayChannel: (channel) ->
     $("#channelName").html("Channel #{channel}")
+
