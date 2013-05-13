@@ -14,9 +14,9 @@ class ClientsController
     Logger.info "Client disconnected. " + socket.id
     Clients.remove(socket.id)
 
-  broadcast: (socket, message) ->
-    Logger.info "Client Broadcasting " + socket.id
-    client = Clients.find(socket.id)
-    client.broadcast(message)
+    #broadcast: (socket, message) ->
+    #  Logger.info "Client Broadcasting " + socket.id
+    #  client = Clients.find(socket.id)
+    #  client.broadcast(message)
 
 global.ClientsController = new ClientsController

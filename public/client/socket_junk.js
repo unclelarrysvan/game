@@ -25,6 +25,8 @@
     ClientSockets.prototype.loginResponse = function(data) {
       if (data.login === "success") {
         return Ui.loginSuccess();
+      } else {
+        return Ui.loginFailed();
       }
     };
 

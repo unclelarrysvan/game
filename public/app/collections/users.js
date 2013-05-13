@@ -10,6 +10,21 @@
       this.collection = "users";
     }
 
+    Users.prototype.findByUserName = function(response, userName, callback) {
+      var _this = this;
+
+      return this.getCollection(function(collection) {
+        return collection.find({
+          userName: userName
+        }).nextObject(function(err, record) {
+          if (err) {
+            throw err;
+          }
+          return callback(response, record);
+        });
+      });
+    };
+
     return Users;
 
   })(LFCollection);

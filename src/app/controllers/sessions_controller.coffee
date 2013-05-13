@@ -6,9 +6,19 @@ class SessionsController
 
   create: (socket, data) ->
     Logger.info "Client attempting to log in."
+    Users.findByUserName socket, data.userName, (socket, record) =>
+      if record
+        @success(socket, record)
+      else
+        @fail(socket)
+
+  success: (socket, user) ->
     client = Clients.find(socket.id)
-    client.setUserName(data.userName)
+    client.secure(user)
     client.socket.emit("loginResponse", {login: "success"})
     io.sockets.emit("world", {message: "#{client.userName} has entered the world."})
+
+  fail: (socket) ->
+    socket.emit("loginResponse", {login: "fail"})
 
 global.SessionsController = new SessionsController

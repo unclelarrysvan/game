@@ -26,6 +26,10 @@
       return $("#title").html("Logged in successfully.");
     };
 
+    Ui.prototype.loginFailed = function() {
+      return $("#title").html("Failed to log in.");
+    };
+
     Ui.prototype.displayWorldMessage = function(message) {
       return $("#worldMessages").append(message).append("<br>").scrollTop($("#worldMessages").outerHeight());
     };

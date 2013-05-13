@@ -9,6 +9,11 @@
       this.joinChannel("world");
     }
 
+    Client.prototype.secure = function(user) {
+      this.user = user;
+      return this.setUserName(user.userName);
+    };
+
     Client.prototype.joinChannel = function(channel) {
       return this.socket.join(channel);
     };

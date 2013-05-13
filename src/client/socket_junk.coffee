@@ -13,6 +13,8 @@ class @ClientSockets
   loginResponse: (data) ->
     if data.login == "success"
       Ui.loginSuccess()
+    else
+      Ui.loginFailed()
 
   worldMessage: (data) ->
     Ui.displayWorldMessage(data.message)

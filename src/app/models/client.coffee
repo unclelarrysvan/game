@@ -4,6 +4,10 @@ class Client
     @userName = @id
     @joinChannel("world")
 
+  secure: (user) ->
+    @user = user
+    @setUserName(user.userName)
+
   joinChannel: (channel) ->
     @socket.join(channel)
 

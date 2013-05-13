@@ -19,6 +19,9 @@ class @Ui
     $("#game").show()
     $("#title").html "Logged in successfully."
 
+  loginFailed: ->
+    $("#title").html "Failed to log in."
+
   displayWorldMessage: (message) ->
     $("#worldMessages")
       .append(message)

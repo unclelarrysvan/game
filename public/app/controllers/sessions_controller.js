@@ -13,16 +13,34 @@
     };
 
     SessionsController.prototype.create = function(socket, data) {
-      var client;
+      var _this = this;
 
       Logger.info("Client attempting to log in.");
+      return Users.findByUserName(socket, data.userName, function(socket, record) {
+        if (record) {
+          return _this.success(socket, record);
+        } else {
+          return _this.fail(socket);
+        }
+      });
+    };
+
+    SessionsController.prototype.success = function(socket, user) {
+      var client;
+
       client = Clients.find(socket.id);
-      client.setUserName(data.userName);
+      client.secure(user);
       client.socket.emit("loginResponse", {
         login: "success"
       });
       return io.sockets.emit("world", {
         message: "" + client.userName + " has entered the world."
+      });
+    };
+
+    SessionsController.prototype.fail = function(socket) {
+      return socket.emit("loginResponse", {
+        login: "fail"
       });
     };
 
