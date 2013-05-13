@@ -31,16 +31,12 @@
     return UsersController["new"](req, res);
   });
 
-  app.post('/users/create', function(req, res) {
-    return UsersController.create(req, res);
+  app.post('/users/save', function(req, res) {
+    return UsersController.save(req, res);
   });
 
   app.get('/users/edit', function(req, res) {
     return UsersController.edit(req, res);
-  });
-
-  app.post('/users/update', function(req, res) {
-    return UsersController.update(req, res);
   });
 
   app.get('/users/delete', function(req, res) {
@@ -69,10 +65,6 @@
 
   app.get('/areas/edit', function(req, res) {
     return AreasController.edit(req, res);
-  });
-
-  app.post('/areas/update', function(req, res) {
-    return AreasController.create(req, res);
   });
 
   app.get('/areas/delete', function(req, res) {

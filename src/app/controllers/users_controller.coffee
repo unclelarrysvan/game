@@ -12,7 +12,7 @@ class UsersController extends ApplicationController
     user = new User
     res.render("users/new", {user: user})
 
-  create: (req, response) ->
+  save: (req, response) ->
     user = new User(req.body)
     Users.save(user, response,
       (respose) -> response.redirect "/users")
@@ -21,10 +21,6 @@ class UsersController extends ApplicationController
     query = @getParams(req)
     Users.find(query.id, response,
       (response, user) => response.render("users/edit", {user: user}))
-
-  update: (req, response) ->
-    Users.update(req.body, response,
-      (response) => response.redirect "/users")
 
   delete: (req, response) ->
     query = @getParams(req)

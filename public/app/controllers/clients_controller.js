@@ -29,14 +29,6 @@
       return Clients.remove(socket.id);
     };
 
-    ClientsController.prototype.broadcast = function(socket, message) {
-      var client;
-
-      Logger.info("Client Broadcasting " + socket.id);
-      client = Clients.find(socket.id);
-      return client.broadcast(message);
-    };
-
     return ClientsController;
 
   })();

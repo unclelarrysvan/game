@@ -1,7 +1,8 @@
-input(type="hidden", value=user._id, name="_id")
-.field
-  label userName:
-  input(value=user.userName, name="userName")
+form(action="/users/save", method="post")
+  input(type="hidden", value=user._id, name="_id")
+  .field
+    label userName:
+    input(value=user.userName, name="userName")
 
-.actions
-  button Submit
+  .actions
+    button Submit

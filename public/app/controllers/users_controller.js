@@ -41,7 +41,7 @@
       });
     };
 
-    UsersController.prototype.create = function(req, response) {
+    UsersController.prototype.save = function(req, response) {
       var user;
 
       user = new User(req.body);
@@ -59,14 +59,6 @@
         return response.render("users/edit", {
           user: user
         });
-      });
-    };
-
-    UsersController.prototype.update = function(req, response) {
-      var _this = this;
-
-      return Users.update(req.body, response, function(response) {
-        return response.redirect("/users");
       });
     };
 

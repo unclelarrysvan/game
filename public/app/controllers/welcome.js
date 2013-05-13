@@ -5,8 +5,7 @@
     function WelcomeController() {}
 
     WelcomeController.prototype.index = function(req, res) {
-      Logger.info("!! GET REQUEST RECEIVED !!");
-      res.sendfile("app/views/index.html");
+      res.render("index");
       return io.sockets["in"](req.body.channel).emit(req.body.message_type, {
         message: req.body.message
       });

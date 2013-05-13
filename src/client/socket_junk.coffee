@@ -9,8 +9,6 @@ class @ClientSockets
   setSocketListeners: ->
     @socket.on 'loginResponse', (data) => @loginResponse(data)
     @socket.on 'world',         (data) => @worldMessage(data)
-    #@socket.on 'channel message', (data) =>
-    #Ui.displayMessage(data.userName, data.mes)
 
   loginResponse: (data) ->
     if data.login == "success"
