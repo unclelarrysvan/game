@@ -1,6 +1,5 @@
 class Logger
-  constructor: ->
   info: (message) ->
     console.log ">>>>>>>>> " + message + " <<<<<<<<<"
 
-global.Logger = Logger
+global.Logger = new Logger

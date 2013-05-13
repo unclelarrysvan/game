@@ -12,6 +12,6 @@
 
   })();
 
-  global.Logger = Logger;
+  global.Logger = new Logger;
 
 }).call(this);
