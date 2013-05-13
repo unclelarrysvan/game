@@ -7,6 +7,8 @@ io.sockets.on 'connection', (socket) ->
   socket.on 'player_characters/new',   -> PlayerCharactersSocketsController.new(socket)
   socket.on 'player_characters/save',  (data) ->
     PlayerCharactersSocketsController.save(socket, data)
+  socket.on 'player_characters/choose',  (data) ->
+    PlayerCharactersSocketsController.choose(socket, data)
 
   socket.on 'broadcast',     (data) -> ClientsController.broadcast(socket, data.message)
   socket.on 'disconnect',           -> ClientsController.disconnect(socket)

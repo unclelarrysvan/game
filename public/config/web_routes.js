@@ -11,6 +11,10 @@
     return res.sendfile("client/init.js");
   });
 
+  app.get('/client/world.js', function(req, res) {
+    return res.sendfile("client/world.js");
+  });
+
   app.get('/client/loading_image.js', function(req, res) {
     return res.sendfile("client/loading_image.js");
   });

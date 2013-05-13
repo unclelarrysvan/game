@@ -11,7 +11,7 @@
         return _this.receivePlayerCharacters(data);
       });
       return ClientSocket.socket.on('player_characters/new', function(data) {
-        return _this.newPlayerCharacterForm(data);
+        return _this.receiveNewForm(data);
       });
     };
 
@@ -21,14 +21,18 @@
     };
 
     PlayerCharacters.prototype.receivePlayerCharacters = function(data) {
-      if (data.characters.length === 0) {
-        return ClientSocket.socket.emit("player_characters/new");
+      if (data.html) {
+        return Ui.mainWindowRender(data.html);
       } else {
-        return console.log(data.characters);
+        return this.getNewForm();
       }
     };
 
-    PlayerCharacters.prototype.newPlayerCharacterForm = function(data) {
+    PlayerCharacters.prototype.getNewForm = function() {
+      return ClientSocket.socket.emit("player_characters/new");
+    };
+
+    PlayerCharacters.prototype.receiveNewForm = function(data) {
       return Ui.mainWindowRender(data.html);
     };
 
@@ -42,6 +46,12 @@
       return new LoadingImage({
         target: "main",
         message: "Getting character list..."
+      });
+    };
+
+    PlayerCharacters.prototype.choose = function(id) {
+      return ClientSocket.socket.emit("player_characters/choose", {
+        _id: id
       });
     };
 

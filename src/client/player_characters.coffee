@@ -4,22 +4,28 @@ class @PlayerCharacters
 
   setSocketListeners: ->
     ClientSocket.socket.on 'player_characters/index', (data) => @receivePlayerCharacters(data)
-    ClientSocket.socket.on 'player_characters/new',   (data) => @newPlayerCharacterForm(data)
+    ClientSocket.socket.on 'player_characters/new',   (data) => @receiveNewForm(data)
 
   getCharacters: ->
     ClientSocket.socket.emit("player_characters/index")
     Ui.gettingCharacters()
 
   receivePlayerCharacters: (data) ->
-    if data.characters.length == 0
-      ClientSocket.socket.emit("player_characters/new")
+    if data.html
+      Ui.mainWindowRender(data.html)
     else
-      console.log data.characters
+      @getNewForm()
 
-  newPlayerCharacterForm: (data) ->
+  getNewForm: ->
+    ClientSocket.socket.emit("player_characters/new")
+
+  receiveNewForm: (data) ->
     Ui.mainWindowRender(data.html)
 
   submitNewPlayerForm: () ->
     data = name: $("#character_name").val()
     ClientSocket.socket.emit("player_characters/save", data)
     new LoadingImage(target: "main", message: "Getting character list...")
+
+  choose: (id) ->
+    ClientSocket.socket.emit("player_characters/choose", {_id: id})

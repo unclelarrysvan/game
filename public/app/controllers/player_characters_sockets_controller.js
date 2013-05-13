@@ -18,7 +18,9 @@
       client = Clients.find(socket.id);
       return PlayerCharacters.findForUser(client.user, socket, function(socket, records) {
         return socket.emit("player_characters/index", {
-          characters: records
+          html: _this.renderTemplate("views/player_characters/_socket_index.jade", {
+            characters: records
+          })
         });
       });
     };
@@ -36,14 +38,20 @@
       var client, playerCharacter,
         _this = this;
 
-      Logger.info(data.name);
       client = Clients.find(socket.id);
       data.user_id = client.user._id;
       playerCharacter = new PlayerCharacter(data);
-      console.log(playerCharacter);
       return PlayerCharacters.save(playerCharacter, socket, function(socket) {
         return _this.forUser(socket);
       });
+    };
+
+    PlayerCharactersSocketsController.prototype.choose = function(socket, data) {
+      var client;
+
+      client = Clients.find(socket.id);
+      client.currentPlayerCharacter_id = data.id;
+      return WorldSocketsController.enter(socket);
     };
 
     return PlayerCharactersSocketsController;

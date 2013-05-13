@@ -13,6 +13,9 @@
     socket.on('player_characters/save', function(data) {
       return PlayerCharactersSocketsController.save(socket, data);
     });
+    socket.on('player_characters/choose', function(data) {
+      return PlayerCharactersSocketsController.choose(socket, data);
+    });
     socket.on('broadcast', function(data) {
       return ClientsController.broadcast(socket, data.message);
     });
