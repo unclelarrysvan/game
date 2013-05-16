@@ -3,3 +3,4 @@ $ ->
   window.ClientSocket = new ClientSockets
   window.PlayerCharacters = new PlayerCharacters
   window.World = new World
+  window.Input = new Input

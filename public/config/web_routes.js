@@ -15,6 +15,10 @@
     return res.sendfile("client/world.js");
   });
 
+  app.get('/client/input.js', function(req, res) {
+    return res.sendfile("client/input.js");
+  });
+
   app.get('/client/loading_image.js', function(req, res) {
     return res.sendfile("client/loading_image.js");
   });

@@ -3,7 +3,8 @@
     window.Ui = new Ui;
     window.ClientSocket = new ClientSockets;
     window.PlayerCharacters = new PlayerCharacters;
-    return window.World = new World;
+    window.World = new World;
+    return window.Input = new Input;
   });
 
 }).call(this);

@@ -23,7 +23,7 @@ class @Ui
 
   displayWorldMessage: (message) ->
     $("#worldMessages")
-      .append(message)
+      .append(document.createTextNode(message))
       .append("<br>")
       .scrollTop($("#worldMessages").outerHeight())
 

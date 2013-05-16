@@ -2,6 +2,7 @@
 io.sockets.on 'connection', (socket) ->
   SessionsController.new(socket)
   socket.on 'login',         (data) -> SessionsController.create(socket, data)
+  socket.on 'action',        (data) -> ActionsController.parse(socket, data)
 
   socket.on 'player_characters/index', -> PlayerCharactersSocketsController.forUser(socket)
   socket.on 'player_characters/new',   -> PlayerCharactersSocketsController.new(socket)
