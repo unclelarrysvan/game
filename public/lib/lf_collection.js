@@ -4,7 +4,16 @@
   LFCollection = (function() {
     function LFCollection() {}
 
-    LFCollection.prototype.ObjectID = require('mongodb').ObjectID;
+    LFCollection.prototype.ObjectID = function(id) {
+      var objectId;
+
+      if (typeof id === "object") {
+        return id;
+      } else {
+        objectId = require('mongodb').ObjectID;
+        return new objectId(id);
+      }
+    };
 
     LFCollection.prototype.getCollection = function(callback) {
       var _this = this;
@@ -35,7 +44,7 @@
 
       return this.getCollection(function(collection) {
         return collection.find({
-          _id: new _this.ObjectID(id)
+          _id: _this.ObjectID(id)
         }).nextObject(function(err, record) {
           if (err) {
             throw err;

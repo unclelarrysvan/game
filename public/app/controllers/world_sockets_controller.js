@@ -12,8 +12,55 @@
     }
 
     WorldSocketsController.prototype.enter = function(socket) {
-      return socket.emit("world/enter", {
-        html: "FUCK YEAH"
+      var client,
+        _this = this;
+
+      socket.emit("world/enter");
+      client = Clients.find(socket.id);
+      Logger.info(client.currentPlayerCharacter_id);
+      return PlayerCharacters.find(client.currentPlayerCharacter_id, socket, function(socket, character) {
+        return _this.plop(socket, character);
+      });
+    };
+
+    WorldSocketsController.prototype.plop = function(socket, playerCharacter) {
+      var _this = this;
+
+      this.renderPlayer(socket, playerCharacter);
+      playerCharacter = new PlayerCharacter(playerCharacter);
+      if (!playerCharacter.currentArea) {
+        return playerCharacter.plop(socket, function(socket) {
+          return _this.findArea(socket, playerCharacter);
+        });
+      } else {
+        Logger.log("ELSE");
+        return this.renderArea(socket);
+      }
+    };
+
+    WorldSocketsController.prototype.renderPlayer = function(socket, playerCharacter) {
+      return socket.emit("render/playerCharacter", {
+        playerCharacter: playerCharacter,
+        html: this.renderTemplate("views/player_characters/_show.jade", {
+          playerCharacter: playerCharacter
+        })
+      });
+    };
+
+    WorldSocketsController.prototype.findArea = function(socket, playerCharacter) {
+      var _this = this;
+
+      return Areas.find(playerCharacter.currentArea_id, socket, function(socket, area) {
+        return _this.renderArea(socket, area);
+      });
+    };
+
+    WorldSocketsController.prototype.renderArea = function(socket, area) {
+      return socket.emit("render/area", {
+        area: area,
+        html: this.renderTemplate("views/areas/_show.jade", {
+          area: area
+        })
       });
     };
 

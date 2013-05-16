@@ -8,6 +8,10 @@ form(action="/areas/save", method="post")
     label Description:
     textarea(name="description")=area.description
 
+  .field
+    label Starting Area:
+    input(type="radio", name="startingArea")
+
   .adjacentAreas
     label Adjacent Areas:
     - each adjacentArea, id in area.adjacentAreas

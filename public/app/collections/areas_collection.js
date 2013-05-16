@@ -10,6 +10,21 @@
       this.collection = "areas";
     }
 
+    Areas.prototype.findStartingArea = function(response, callback) {
+      var _this = this;
+
+      return this.getCollection(function(collection) {
+        return collection.find({
+          "startingArea": "on"
+        }).toArray(function(err, records) {
+          if (err) {
+            throw err;
+          }
+          return callback(response, records[0]);
+        });
+      });
+    };
+
     return Areas;
 
   })(LFCollection);

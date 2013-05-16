@@ -15,6 +15,7 @@
       this.name = data.name;
       this.description = data.description;
       this.adjacentAreas = data.adjacentAreas || {};
+      this.startingArea = data.startingArea || false;
     }
 
     Area.prototype.isReadyToSave = function() {

@@ -6,6 +6,7 @@ class Area extends LFModel
     @name = data.name
     @description = data.description
     @adjacentAreas = data.adjacentAreas || {}
+    @startingArea = data.startingArea || false
 
   isReadyToSave: ->
     if @que == 0

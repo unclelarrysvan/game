@@ -8,6 +8,12 @@
       return console.log(">>>>>>>>> " + message + " <<<<<<<<<");
     };
 
+    Logger.prototype.debug = function(message) {
+      console.log("==================================");
+      console.log(message);
+      return console.log("==================================");
+    };
+
     return Logger;
 
   })();

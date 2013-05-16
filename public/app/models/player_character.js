@@ -9,11 +9,24 @@
     function PlayerCharacter(data) {
       data = data || {};
       if (data._id) {
-        this._id = this.ObjectID(data._id);
+        this._id = this.ObjectID(data._id.toString());
       }
       this.user_id = data.user_id;
       this.name = data.name;
     }
+
+    PlayerCharacter.prototype.plop = function(response, callback) {
+      var _this = this;
+
+      return Areas.findStartingArea(response, function(response, area) {
+        return _this.setCurrentArea(area, response, callback);
+      });
+    };
+
+    PlayerCharacter.prototype.setCurrentArea = function(area, response, callback) {
+      this.currentArea_id = area._id;
+      return PlayerCharacters.save(this, response, callback);
+    };
 
     return PlayerCharacter;
 

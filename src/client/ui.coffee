@@ -30,6 +30,10 @@ class @Ui
   mainWindowRender: (html) ->
     $("#main").html html
 
+  reset: ->
+    $("#main").html ""
+    $("#title").html ""
+
   gettingCharacters: ->
     new LoadingImage(target: "main", message: "Getting character list...")
 

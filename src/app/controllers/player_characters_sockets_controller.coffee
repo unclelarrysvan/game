@@ -20,8 +20,7 @@ class PlayerCharactersSocketsController extends LFSocketController
 
   choose: (socket, data) ->
     client = Clients.find(socket.id)
-    client.currentPlayerCharacter_id = data.id
+    client.currentPlayerCharacter_id = data._id
     WorldSocketsController.enter(socket)
-
 
 global.PlayerCharactersSocketsController = new PlayerCharactersSocketsController

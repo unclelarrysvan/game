@@ -50,7 +50,7 @@
       var client;
 
       client = Clients.find(socket.id);
-      client.currentPlayerCharacter_id = data.id;
+      client.currentPlayerCharacter_id = data._id;
       return WorldSocketsController.enter(socket);
     };
 

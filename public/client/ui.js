@@ -37,6 +37,11 @@
       return $("#main").html(html);
     };
 
+    Ui.prototype.reset = function() {
+      $("#main").html("");
+      return $("#title").html("");
+    };
+
     Ui.prototype.gettingCharacters = function() {
       return new LoadingImage({
         target: "main",

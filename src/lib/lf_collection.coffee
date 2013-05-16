@@ -1,5 +1,10 @@
 class LFCollection
-  ObjectID: require('mongodb').ObjectID
+  ObjectID: (id) ->
+    if typeof id == "object"
+      return id
+    else
+      objectId = require('mongodb').ObjectID
+      new objectId(id)
 
   getCollection: (callback) ->
     Db.createCollection @collection, (err, collection) =>
@@ -14,7 +19,7 @@ class LFCollection
 
   find: (id, response, callback) ->
     @getCollection (collection) =>
-      collection.find(_id: new @ObjectID(id)).nextObject (err, record) =>
+      collection.find(_id: @ObjectID(id)).nextObject (err, record) =>
         throw err if err
         callback(response, record)
 

@@ -3,7 +3,13 @@ class @World
     @setSocketListeners()
 
   setSocketListeners: ->
-    ClientSocket.socket.on 'world/enter', (data) => @enter(data)
+    ClientSocket.socket.on 'world/enter', => Ui.reset()
+    ClientSocket.socket.on 'render/playerCharacter', (data) => @displayPlayerCharacter(data)
+    ClientSocket.socket.on 'render/area', (data) => @displayArea(data)
 
-  enter: (data) ->
-    Ui.mainWindowRender(data.html)
+  displayPlayerCharacter: (data) ->
+    $("#playerCharacter").html data.html
+
+  displayArea: (data) ->
+    $("#title").html data.area.name
+    $("#area").html data.html

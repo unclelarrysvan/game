@@ -1,8 +1,17 @@
 class PlayerCharacter extends LFModel
   constructor: (data) ->
     data = data || {}
-    @_id = @ObjectID(data._id) if data._id
+    @_id = @ObjectID(data._id.toString()) if data._id
     @user_id = data.user_id
     @name = data.name
+
+  plop: (response, callback) ->
+    Areas.findStartingArea response,
+      (response, area) => @setCurrentArea(area, response, callback)
+
+  setCurrentArea: (area, response, callback) ->
+    @currentArea_id = area._id
+    PlayerCharacters.save(@, response, callback)
+
 
 global.PlayerCharacter = PlayerCharacter
