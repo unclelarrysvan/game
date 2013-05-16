@@ -25,7 +25,7 @@ class @Ui
     $("#worldMessages")
       .append(document.createTextNode(message))
       .append("<br>")
-      .scrollTop($("#worldMessages").outerHeight())
+    $('#worldMessages').scrollTop($('#worldMessages').prop("scrollHeight"))
 
   mainWindowRender: (html) ->
     $("#main").html html

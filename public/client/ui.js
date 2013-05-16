@@ -30,7 +30,8 @@
     };
 
     Ui.prototype.displayWorldMessage = function(message) {
-      return $("#worldMessages").append(document.createTextNode(message)).append("<br>").scrollTop($("#worldMessages").outerHeight());
+      $("#worldMessages").append(document.createTextNode(message)).append("<br>");
+      return $('#worldMessages').scrollTop($('#worldMessages').prop("scrollHeight"));
     };
 
     Ui.prototype.mainWindowRender = function(html) {

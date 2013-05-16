@@ -30,6 +30,7 @@ table {
 #playerCharacter {
   border: 1px solid black;
   float: right;
+  margin-top: 5px;
   width: 30%; }
 
 #area, #main {
